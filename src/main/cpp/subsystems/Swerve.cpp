@@ -8,7 +8,7 @@
 #include "subsystems/Swerve.h"
 #include "RobotMap.h"
 
-Swerve::Swerve(WheelModule fl, WheelModule fr, WheelModule bl, WheelModule br) : Subsystem("Swerve") {
+Swerve::Swerve(WheelModule &fl, WheelModule &fr, WheelModule &bl, WheelModule &br) : Subsystem("Swerve") {
   this->fl = &fl;
   this->fr = &fr;
   this->bl = &bl;

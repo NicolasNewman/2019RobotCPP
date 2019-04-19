@@ -16,7 +16,7 @@ class Swerve : public frc::Subsystem {
     AHRS gyro{SPI::Port::kMXP};
     WheelModule *fl, *fr, *bl, *br;
  public:
-  Swerve(WheelModule fl, WheelModule fr, WheelModule bl, WheelModule br);
+  Swerve(WheelModule &fl, WheelModule &fr, WheelModule &bl, WheelModule &br);
   void InitDefaultCommand() override;
   double getGyro();
   void calculateVectors(double x, double y, double z);

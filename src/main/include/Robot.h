@@ -15,11 +15,15 @@
 #include "commands/ExampleCommand.h"
 #include "commands/MyAutoCommand.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "subsystems/Swerve.h"
+#include "subsystems/WheelModule.h"
 
 class Robot : public frc::TimedRobot {
  public:
   static ExampleSubsystem m_subsystem;
   static OI m_oi;
+  static WheelModule fl, fr, bl, br;
+  static Swerve swerve;
 
   void RobotInit() override;
   void RobotPeriodic() override;

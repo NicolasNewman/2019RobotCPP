@@ -11,14 +11,19 @@ const double PI = atan(1.0)*4;
 constexpr int W = 1;
 constexpr int L = 1;
 constexpr int TIMEOUT = 10;
-constexpr int COUNTPERDEG;
+constexpr int COUNTPERDEG = 0;
 
-constexpr int aP;
-constexpr int aI;
-constexpr int aD;
-constexpr int aF;
-constexpr int aV;
-constexpr int aA;
+constexpr int FLANGLEPORT = 0, FLSPEEDPORT = 0;
+constexpr int FRANGLEPORT = 0, FRSPEEDPORT = 0;
+constexpr int BLANGLEPORT = 0, BLSPEEDPORT = 0;
+constexpr int BRANGLEPORT = 0, BRSPEEDPORT = 0;
+
+constexpr int aP = 0;
+constexpr int aI = 0;
+constexpr int aD = 0;
+constexpr int aF = 0;
+constexpr int aV = 0;
+constexpr int aA = 0;
 constexpr int aIZONE = 50;
 
 /**

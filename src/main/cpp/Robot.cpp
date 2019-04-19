@@ -9,14 +9,20 @@
 
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <RobotMap.h>
 
 ExampleSubsystem Robot::m_subsystem;
+WheelModule Robot::fl{FLANGLEPORT, FLSPEEDPORT, "fl"};
+WheelModule Robot::fr{FRANGLEPORT, FRSPEEDPORT, "fr"};
+WheelModule Robot::bl{BLANGLEPORT, BLSPEEDPORT, "bl"};
+WheelModule Robot::br{BRANGLEPORT, BRSPEEDPORT, "br"};
+Swerve Robot::swerve{fl, fr, bl, br};
 OI Robot::m_oi;
 
 void Robot::RobotInit() {
-  m_chooser.SetDefaultOption("Default Auto", &m_defaultAuto);
-  m_chooser.AddOption("My Auto", &m_myAuto);
-  frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+  // m_chooser.SetDefaultOption("Default Auto", &m_defaultAuto);
+  // m_chooser.AddOption("My Auto", &m_myAuto);
+  // frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
 }
 
 /**
