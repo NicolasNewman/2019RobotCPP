@@ -8,27 +8,23 @@
 #include "subsystems/Swerve.h"
 #include "RobotMap.h"
 
-Swerve::Swerve(WheelModule &fl, WheelModule &fr, WheelModule &bl, WheelModule &br) : Subsystem("Swerve")
-{
+Swerve::Swerve(WheelModule &fl, WheelModule &fr, WheelModule &bl, WheelModule &br) : Subsystem("Swerve") {
     this->fl = &fl;
     this->fr = &fr;
     this->bl = &bl;
     this->br = &br;
 }
 
-void Swerve::InitDefaultCommand()
-{
+void Swerve::InitDefaultCommand() {
     // Set the default command for a subsystem here.
     // SetDefaultCommand(new MySpecialCommand());
 }
 
-double Swerve::getGyro()
-{
+double Swerve::getGyro() {
     return gyro.GetAngle();
 }
 
-void Swerve::calculateVectors(double x, double y, double z)
-{
+void Swerve::calculateVectors(double x, double y, double z) {
     double r = sqrt((L * L) + (W * W));
     y *= -1;
 
@@ -48,25 +44,20 @@ void Swerve::calculateVectors(double x, double y, double z)
     double flSpeed = sqrt((b * b) + (d * d));
 
     double max = brSpeed;
-    if (brSpeed > max)
-    {
+    if (brSpeed > max) {
         max = brSpeed;
     }
-    if (blSpeed > max)
-    {
+    if (blSpeed > max) {
         max = blSpeed;
     }
-    if (frSpeed > max)
-    {
+    if (frSpeed > max) {
         max = frSpeed;
     }
-    if (flSpeed > max)
-    {
+    if (flSpeed > max) {
         max = flSpeed;
     }
 
-    if (max > 1)
-    {
+    if (max > 1) {
         brSpeed /= max;
         blSpeed /= max;
         frSpeed /= max;

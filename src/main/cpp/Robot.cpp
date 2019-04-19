@@ -7,9 +7,9 @@
 
 #include "Robot.h"
 
+#include <RobotMap.h>
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
-#include <RobotMap.h>
 
 ExampleSubsystem Robot::m_subsystem;
 WheelModule Robot::fl{FLANGLEPORT, FLSPEEDPORT, "fl"};
@@ -19,8 +19,7 @@ WheelModule Robot::br{BRANGLEPORT, BRSPEEDPORT, "br"};
 Swerve Robot::swerve{fl, fr, bl, br};
 OI Robot::m_oi;
 
-void Robot::RobotInit()
-{
+void Robot::RobotInit() {
     // m_chooser.SetDefaultOption("Default Auto", &m_defaultAuto);
     // m_chooser.AddOption("My Auto", &m_myAuto);
     // frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
@@ -56,8 +55,7 @@ void Robot::DisabledPeriodic() { frc::Scheduler::GetInstance()->Run(); }
  * chooser code above (like the commented example) or additional comparisons to
  * the if-else structure below with additional strings & commands.
  */
-void Robot::AutonomousInit()
-{
+void Robot::AutonomousInit() {
     // std::string autoSelected = frc::SmartDashboard::GetString(
     //     "Auto Selector", "Default");
     // if (autoSelected == "My Auto") {
@@ -68,22 +66,19 @@ void Robot::AutonomousInit()
 
     m_autonomousCommand = m_chooser.GetSelected();
 
-    if (m_autonomousCommand != nullptr)
-    {
+    if (m_autonomousCommand != nullptr) {
         m_autonomousCommand->Start();
     }
 }
 
 void Robot::AutonomousPeriodic() { frc::Scheduler::GetInstance()->Run(); }
 
-void Robot::TeleopInit()
-{
+void Robot::TeleopInit() {
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != nullptr)
-    {
+    if (m_autonomousCommand != nullptr) {
         m_autonomousCommand->Cancel();
         m_autonomousCommand = nullptr;
     }
@@ -94,8 +89,7 @@ void Robot::TeleopPeriodic() { frc::Scheduler::GetInstance()->Run(); }
 void Robot::TestPeriodic() {}
 
 #ifndef RUNNING_FRC_TESTS
-int main()
-{
+int main() {
     return frc::StartRobot<Robot>();
 }
 #endif
