@@ -8,16 +8,17 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
-#include "subsystems/WheelModule.h"
 #include "AHRS.h"
+#include "subsystems/WheelModule.h"
 
 class Swerve : public frc::Subsystem {
- private:
+   private:
     AHRS gyro{SPI::Port::kMXP};
     WheelModule *fl, *fr, *bl, *br;
- public:
-  Swerve(WheelModule &fl, WheelModule &fr, WheelModule &bl, WheelModule &br);
-  void InitDefaultCommand() override;
-  double getGyro();
-  void calculateVectors(double x, double y, double z);
+
+   public:
+    Swerve(WheelModule &fl, WheelModule &fr, WheelModule &bl, WheelModule &br);
+    void InitDefaultCommand() override;
+    double getGyro();
+    void calculateVectors(double x, double y, double z);
 };

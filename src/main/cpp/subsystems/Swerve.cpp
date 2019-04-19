@@ -8,63 +8,80 @@
 #include "subsystems/Swerve.h"
 #include "RobotMap.h"
 
-Swerve::Swerve(WheelModule &fl, WheelModule &fr, WheelModule &bl, WheelModule &br) : Subsystem("Swerve") {
-  this->fl = &fl;
-  this->fr = &fr;
-  this->bl = &bl;
-  this->br = &br;
+Swerve::Swerve(WheelModule &fl, WheelModule &fr, WheelModule &bl, WheelModule &br) : Subsystem("Swerve")
+{
+    this->fl = &fl;
+    this->fr = &fr;
+    this->bl = &bl;
+    this->br = &br;
 }
 
-void Swerve::InitDefaultCommand() {
-  // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
+void Swerve::InitDefaultCommand()
+{
+    // Set the default command for a subsystem here.
+    // SetDefaultCommand(new MySpecialCommand());
 }
 
-double Swerve::getGyro() {
-  return gyro.GetAngle();
+double Swerve::getGyro()
+{
+    return gyro.GetAngle();
 }
 
-void Swerve::calculateVectors(double x, double y, double z) {
-  double r = sqrt((L*L) + (W*W));
-  y *= -1;
+void Swerve::calculateVectors(double x, double y, double z)
+{
+    double r = sqrt((L * L) + (W * W));
+    y *= -1;
 
-  double gyro = getGyro() * PI;
-  double temp = y * cos(gyro) + x * sin(gyro);
-  x = -y * sin(gyro) + x * cos(gyro);
-  y = temp;
+    double gyro = getGyro() * PI;
+    double temp = y * cos(gyro) + x * sin(gyro);
+    x = -y * sin(gyro) + x * cos(gyro);
+    y = temp;
 
-  double a = x - z * (L / r) + 0;
-  double b = x + z * (L / r);
-  double c = y - z * (W / r) + 0;
-  double d =  y + z * (W/ r);
+    double a = x - z * (L / r) + 0;
+    double b = x + z * (L / r);
+    double c = y - z * (W / r) + 0;
+    double d = y + z * (W / r);
 
-  double brSpeed = sqrt((a * a) + (c * c));
-  double blSpeed = sqrt((a * a) + (d * d));
-  double frSpeed = sqrt((b * b) + (c * c));
-  double flSpeed = sqrt((b * b) + (d * d));
+    double brSpeed = sqrt((a * a) + (c * c));
+    double blSpeed = sqrt((a * a) + (d * d));
+    double frSpeed = sqrt((b * b) + (c * c));
+    double flSpeed = sqrt((b * b) + (d * d));
 
-  double max = brSpeed;
-  if (brSpeed > max) { max = brSpeed; }
-  if (blSpeed > max) { max = blSpeed; }
-  if (frSpeed > max) { max = frSpeed; }
-  if (flSpeed > max) { max = flSpeed; }
+    double max = brSpeed;
+    if (brSpeed > max)
+    {
+        max = brSpeed;
+    }
+    if (blSpeed > max)
+    {
+        max = blSpeed;
+    }
+    if (frSpeed > max)
+    {
+        max = frSpeed;
+    }
+    if (flSpeed > max)
+    {
+        max = flSpeed;
+    }
 
-  if (max > 1) {
-    brSpeed /= max;
-    blSpeed /= max;
-    frSpeed /= max;
-    flSpeed /= max;
-  }
+    if (max > 1)
+    {
+        brSpeed /= max;
+        blSpeed /= max;
+        frSpeed /= max;
+        flSpeed /= max;
+    }
 
-  double brAngle = (atan2(a, c) * 180 / PI);
-  double blAngle = (atan2(a, d) * 180 / PI);
-  double frAngle = (atan2(b, c) * 180 / PI);
-  double flAngle = (atan2(b, d) * 180 / PI);
+    double brAngle = (atan2(a, c) * 180 / PI);
+    double blAngle = (atan2(a, d) * 180 / PI);
+    double frAngle = (atan2(b, c) * 180 / PI);
+    double flAngle = (atan2(b, d) * 180 / PI);
 
-  br->drive(brSpeed, brAngle);
-  bl->drive(blSpeed, blAngle);
-  fr->drive(frSpeed, frAngle);
-  fl->drive(flSpeed, flAngle);
+    br->drive(brSpeed, brAngle);
+    bl->drive(blSpeed, blAngle);
+    fr->drive(frSpeed, frAngle);
+    fl->drive(flSpeed, flAngle);
 }
 
 // Put methods for controlling this subsystem

@@ -10,21 +10,22 @@
 #include <frc/commands/Subsystem.h>
 #include "ctre/Phoenix.h"
 
-class WheelModule : public frc::Subsystem {
- private:
- int anglePort;
- int speedPort;
- int lastAngle;
- char id[2];
-  TalonSRX speedMotor{speedPort};
-  TalonSRX angleMotor{anglePort};
-  // It's desirable that everything possible under private except
-  // for methods that implement subsystem capabilities
+class WheelModule : public frc::Subsystem
+{
+  private:
+    int anglePort;
+    int speedPort;
+    int lastAngle;
+    char id[2];
+    TalonSRX speedMotor{speedPort};
+    TalonSRX angleMotor{anglePort};
+    // It's desirable that everything possible under private except
+    // for methods that implement subsystem capabilities
 
- public:
-  WheelModule(int anglePort, int speedPort, char id[]);
-  void InitDefaultCommand() override;
+  public:
+    WheelModule(int anglePort, int speedPort, char id[]);
+    void InitDefaultCommand() override;
 
-  void drive(double speed, double angle);
-  double adjustAngle(double angle);
+    void drive(double speed, double angle);
+    double adjustAngle(double angle);
 };
