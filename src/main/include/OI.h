@@ -6,8 +6,15 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
+#include "Joystick.h"
 
 class OI {
    public:
     OI();
+    double getX();
+    double getY();
+    double getZ();
+
+   private:
+    frc::Joystick driveStick{0}, controlStick{1};
 };

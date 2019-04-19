@@ -8,7 +8,23 @@
 #include "OI.h"
 
 #include <frc/WPILib.h>
+#include "RobotMap.h"
 
 OI::OI() {
-  // Process operator interface input here.
+    // Process operator interface input here.
+}
+
+double OI::getX() {
+    double x = driveStick.GetX();
+    return abs(x) > DEADZONE_XY ? x : 0;
+}
+
+double OI::getY() {
+    double y = driveStick.GetY();
+    return abs(y) > DEADZONE_XY ? y : 0;
+}
+
+double OI::getZ() {
+    double z = driveStick.GetZ();
+    return abs(z) > DEADZONE_Z ? z : 0;
 }

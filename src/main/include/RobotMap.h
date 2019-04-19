@@ -7,11 +7,13 @@
 
 #pragma once
 
-const double PI = atan(1.0)*4;
+const double PI = atan(1.0) * 4;
 constexpr int W = 1;
 constexpr int L = 1;
 constexpr int TIMEOUT = 10;
 constexpr int COUNTPERDEG = 0;
+constexpr int DEADZONE_XY = 0;
+constexpr int DEADZONE_Z = 0;
 
 constexpr int FLANGLEPORT = 0, FLSPEEDPORT = 0;
 constexpr int FRANGLEPORT = 0, FRSPEEDPORT = 0;
